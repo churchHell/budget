@@ -10,17 +10,29 @@ const DateButton = styled.button`
   padding: 10px;
 `;
 
+const Nav = styled.nav`
+  display: flex;
+`;
+
+const Link = styled.span`
+  border-bottom: ${ ({selected}) => (selected ? '2px solid black' : 'none') };
+  margin: 10px;
+  cursor: pointer;
+`;
+
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      date: moment()
+      date: moment(),
+      navSelected: 'expanse'
     }
   }
   handleSubDay = () => { this.setState({date: this.state.date.subtract(1, 'day')}); };
   handleAddDay = () => { this.setState({date: this.state.date.add(1, 'day')}); };
+  handleNavClick = (event) => { this.setState({navSelected: event.target.getAttribute('name')}); };
   render() {
-    const {date} = this.state;
+    const {date, navSelected} = this.state;
     return (
       <section>
         <header>
@@ -31,6 +43,12 @@ class App extends Component {
             <DateButton onClick={this.handleAddDay}>+</DateButton>
           </div>
         </header>
+        <main>
+          <Nav>
+            <Link name="expanse" onClick={this.handleNavClick} selected={navSelected=="expanse"}>Расходы</Link>
+            <Link name="incomes" onClick={this.handleNavClick} selected={navSelected=="incomes"}>Доходы</Link>
+          </Nav>
+        </main>
       </section>
     );
   }
