@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import styled from 'styled-components';
+import Expanse from './Expanse';
+import Incomes from './Incomes';
 
 const DateButton = styled.button`
   color: white;
@@ -45,10 +47,10 @@ class App extends Component {
         </header>
         <main>
           <Nav>
-            <Link name="expanse" onClick={this.handleNavClick} selected={navSelected=="expanse"}>Расходы</Link>
-            <Link name="incomes" onClick={this.handleNavClick} selected={navSelected=="incomes"}>Доходы</Link>
+            <Link name="expanse" onClick={this.handleNavClick} selected={navSelected==="expanse"}>Расходы</Link>
+            <Link name="incomes" onClick={this.handleNavClick} selected={navSelected==="incomes"}>Доходы</Link>
           </Nav>
-          { navSelected == 'expanse' ? <Expanse /> : <Incomes /> }
+          { navSelected === 'expanse' ? <Expanse /> : <Incomes /> }
         </main>
       </section>
     );
